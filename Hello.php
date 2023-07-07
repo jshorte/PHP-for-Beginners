@@ -1,5 +1,9 @@
 <?php
 
-$articles = ["First", "Second", "Third"];
+$articles = [
+     "One" => "First",
+      "Three" => "Second",
+       "Third"
+    ];
 
-var_dump($articles[0]);
+var_dump($articles["Three"]);
