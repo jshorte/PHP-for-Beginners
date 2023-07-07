@@ -1,11 +1,11 @@
-<?php 
+<?php
 
-$message1 = "Hello";
-$message2 = "World";
-$message3 = $message1 . $message2;
+$message = 'Hello';
+$name = "Dave";
 
-$boolT = true;
-$boolF = false;
+$start = "3 o'clock";
+$end = '4 o\'clock';
 
-var_dump($message3);
-var_dump($boolT && $boolF);
+$days = "Monday\nTuesday\nWednesday";
+
+echo "Hello {$name}";
