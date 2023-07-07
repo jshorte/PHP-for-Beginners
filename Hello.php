@@ -1,11 +1,5 @@
 <?php
 
-$message = 'Hello';
-$name = "Dave";
+$articles = ["First", "Second", "Third"];
 
-$start = "3 o'clock";
-$end = '4 o\'clock';
-
-$days = "Monday\nTuesday\nWednesday";
-
-echo "Hello {$name}";
+var_dump($articles[0]);
