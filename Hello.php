@@ -1,8 +1,12 @@
 <?php
 
-$articles = [ "First", "Second", "Third"];
+$articles = [ 
+    'a' => "First", 
+    'b' => "Second",
+    'c' => "Third"
+];
 
-foreach ($articles as $article)
+foreach ($articles as $index => $article)
 {
-    echo $article, ", ";
+    echo $index . ' - ' . $article, ", ";
 }
