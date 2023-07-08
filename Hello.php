@@ -1,12 +1,5 @@
 <?php
 
-$articles = [ 
-    'a' => "First", 
-    'b' => "Second",
-    'c' => "Third"
-];
+$articles = [];
 
-foreach ($articles as $index => $article)
-{
-    echo $index . ' - ' . $article, ", ";
-}
+echo empty($articles) ?  "Empty Array" : "Full Array";
