@@ -1,10 +1,8 @@
 <?php
 
-$articles = [
-    1 => ["title" => "First post", "content" => "This is the first post"],
-    3 => ["title" => "Second post", "content" => "This is the second post"],
-    5 => ["title" => "Final post", "context" => "This is the final post"]
-];
+$articles = [ "First", "Second", "Third"];
 
-# var_dump($articles);
-var_dump($articles[3]["title"]);
+foreach ($articles as $article)
+{
+    echo $article, ", ";
+}
