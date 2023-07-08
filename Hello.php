@@ -1,6 +1,18 @@
 <?php
 
-for($i = 0; $i < 10; $i++)
+$day = "Sponge";
+
+switch($day)
 {
-    echo $i + 1 . ", ";
+    case "Mon":
+        echo "Monday";
+        break;
+    case "Tue":
+        echo "Tuesday";
+        break;
+    case "Wed":
+        echo "Wednesday";
+        break;
+    default:
+        echo "Not a day";
 }
