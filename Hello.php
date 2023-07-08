@@ -1,5 +1,6 @@
 <?php
 
-$articles = [];
-
-echo empty($articles) ?  "Empty Array" : "Full Array";
+for($i = 0; $i < 10; $i++)
+{
+    echo $i + 1 . ", ";
+}
