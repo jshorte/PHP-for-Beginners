@@ -1,6 +1,6 @@
 <?php
 
-require 'database.php';
+require 'includes/database.php';
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])){ //Checks if URL param is a number and has been defined
 
@@ -27,7 +27,7 @@ else { //Null if not a number
 
 ?>
 
-<?php require 'header.php'; ?>
+<?php require 'includes/header.php'; ?>
 
         <?php if ($article === NULL): ?>
             <p>Article not found.</p>
@@ -39,5 +39,5 @@ else { //Null if not a number
             </article>        
 
         <?php endif; ?>
-        
-<?php require 'footer.php'; ?>
+
+<?php require 'includes/footer.php'; ?>

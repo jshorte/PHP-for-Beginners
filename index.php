@@ -1,6 +1,6 @@
 <?php
 
-require 'database.php';
+require 'includes/database.php';
 
 # echo "Connection Established";
 
@@ -24,7 +24,7 @@ else {
 
 ?>
 
-<?php require 'header.php'; ?>
+<?php require 'includes/header.php'; ?>
 
         <?php if (empty($articles)): ?>
             <p>No articles found.</p>
@@ -44,4 +44,4 @@ else {
 
         <?php endif; ?>
 
-<?php require 'footer.php'; ?>
+<?php require 'includes/footer.php'; ?>
