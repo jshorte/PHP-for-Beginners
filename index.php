@@ -14,4 +14,21 @@ if(mysqli_connect_error()) {
 }
 
 echo "Connection Established";
- 
+
+//Get data from the article table
+$sql = "SELECT *
+        FROM article
+        ORDER BY published_at;";
+
+        $results = mysqli_query($conn, $sql); //Query db
+
+        //Print error
+        if($results === false) {
+            echo mysqli_error($conn);
+        } 
+        //Fetch and display results (Associative to display names for columns)
+        else {
+            $articles = mysqli_fetch_all($results, MYSQLI_ASSOC);
+
+            var_dump($articles);
+        }
