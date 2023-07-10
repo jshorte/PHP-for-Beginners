@@ -18,7 +18,7 @@ if(mysqli_connect_error()) {
 //Get data from the article table
 $sql = "SELECT *
         FROM article        
-        WHERE id = 1;";
+        WHERE id = " . $_GET['id']; //Gets the key from url param specified by index.php to access the associated value
 
 $results = mysqli_query($conn, $sql); //Query db
 

@@ -56,7 +56,8 @@ else {
                 <?php foreach ($articles as $article): ?>
                     <li>
                         <article>
-                            <h2><?= $article['title']; ?></h2>
+                            <!-- Create a link from the articles title. This link uses the articles ID to go to the specific page-->
+                            <h2><a href="article.php?id=<?= $article['id']; ?>"><?= $article['title']; ?></a></h2>                            
                             <p><?= $article['content']; ?></p>
                         </article>
                     </li>
