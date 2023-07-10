@@ -1,29 +1,17 @@
 <?php
 
-$name = "Jacob " . "Shorte";
-$hour = 12;
+$db_host = 'localhost';         //Name of the database host
+$db_name = 'cms';               //Name of database
+$db_user = 'cms_www';           //Name of user on the database
+$db_pass = 'KOS4@tALN5*)5yIw';  //Password of the named user on the database
 
-?>
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name); //Connect to server
 
-<!DOCTYPE html>
-<html>
-<head>    
-    <title>My Website</title>
-    <meta charset="utf-8">
-</head>
-<body>
-    <h1>Header 1</h1>
+//Check if there is an error, if so, print the error and terminate;
+if(mysqli_connect_error()) {
+    echo mysqli_connect_error();
+    exit;
+}
 
-    <p>Hello, <?= $name; ?></p>    
-
-    <?php if ($hour < 12) : ?> 
-        Good morning <?php echo "(Hour: {$hour} )"; ?>  
-    <?php elseif($hour < 18) : ?>    
-        Good afternoon <?php echo "(Hour: {$hour} )"; ?>        
-    <?php elseif($hour < 22) : ?>
-        Good evening <?php echo "(Hour: {$hour} )"; ?>     
-    <?php else : ?>
-        Good night <?php echo "(Hour: {$hour} )"; ?>    
-    <?php endif; ?>  
-
-</body>    
+echo "Connection Established";
+ 
