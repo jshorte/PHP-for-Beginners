@@ -16,7 +16,7 @@ $hour = 12;
 
     <p>Hello, <?= $name; ?></p>    
 
-    <?php if ($hour < 12) : ?>
+    <?php if ($hour < 12) : ?> 
         Good morning <?php echo "(Hour: {$hour} )"; ?>  
     <?php elseif($hour < 18) : ?>    
         Good afternoon <?php echo "(Hour: {$hour} )"; ?>        
