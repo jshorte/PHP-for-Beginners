@@ -49,6 +49,7 @@ require 'includes/header.php' ?>
 
 <h2>New article</h2>
 
+<!-- Output errors into list -->
 <?php if (!empty($errors)): ?>
     <ul>
         <?php foreach($errors as $error): ?>
