@@ -14,7 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
     <body>
         <form method="post">
-            <input name="username">
+            <input type="text" value="Joe">
+            <input type="text" name="Surname" value="Bloggs">
             <input name="password" type="password">
             <button>Send</button>
         </form>
