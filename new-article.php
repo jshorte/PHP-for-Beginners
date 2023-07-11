@@ -6,20 +6,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Adds input data from form to specified database
     $sql = "INSERT INTO article (title, content, published_at)
-            VALUES('" . mysqli_escape_string($conn, $_POST['title']) . "',
-                   '" . mysqli_escape_string($conn, $_POST['content']) . "',
-                   '" . mysqli_escape_string($conn, $_POST['published_at']) . "')";    
+            VALUES(?, ?, ?)"; //Values for our prepared statement
 
-    $results = mysqli_query($conn, $sql); //Query db
+    $stmt = mysqli_prepare($conn, $sql); //Prepare the query
 
     //Print error
-    if($results === false) {
+    if($stmt === false) {
         echo mysqli_error($conn);
-    } 
-    //Retrieve ID of inserted record
+    }     
     else {
-        $id = mysqli_insert_id($conn);
+
+        mysqli_stmt_bind_param($stmt, "sss", $_POST['title'], $_POST['content'], $_POST['published_at']); //Add form data (expecting three strings "sss") to prepared statement
+        
+        //On successful execution the auto-generated ID is inserted into the record
+        if(mysqli_stmt_execute($stmt)) {  
+
+        $id = mysqli_insert_id($conn);        
         echo "Inserted record with ID: $id";
+
+        } else {
+
+            echo mysqli_stmt_errno($stmt);
+        }
     }
 }
 
