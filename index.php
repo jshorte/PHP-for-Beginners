@@ -2,6 +2,8 @@
 
 require 'includes/database.php';
 
+$conn = getDB();
+
 # echo "Connection Established";
 
 //Get data from the article table

@@ -2,6 +2,8 @@
 
 require 'includes/database.php';
 
+$conn = getDB();
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])){ //Checks if URL param is a number and has been defined
 
     //Get data from the article table

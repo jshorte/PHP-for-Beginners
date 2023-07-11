@@ -1,8 +1,10 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+require 'includes/database.php'; //Contains getDB()
 
-    require 'includes/database.php'; //Connects to the database ($conn) 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {   
+
+    $conn = getDB();
 
     //Adds input data from form to specified database
     $sql = "INSERT INTO article (title, content, published_at)
