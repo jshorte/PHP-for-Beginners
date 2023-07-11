@@ -2,33 +2,45 @@
 
 require 'includes/database.php'; //Contains getDB()
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {   
+$errors = [];
 
-    $conn = getDB();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {       
 
-    //Adds input data from form to specified database
-    $sql = "INSERT INTO article (title, content, published_at)
-            VALUES(?, ?, ?)"; //Values for our prepared statement
+    if($_POST['title'] == '') {
+        $errors[] = 'Title is required';
+    }
+    if($_POST['content'] == '') {
+        $errors[] = 'Content is required';
+    }    
 
-    $stmt = mysqli_prepare($conn, $sql); //Prepare the query
+    if(empty($errors)) {
 
-    //Print error
-    if($stmt === false) {
-        echo mysqli_error($conn);
-    }     
-    else {
+        $conn = getDB();
 
-        mysqli_stmt_bind_param($stmt, "sss", $_POST['title'], $_POST['content'], $_POST['published_at']); //Add form data (expecting three strings "sss") to prepared statement
-        
-        //On successful execution the auto-generated ID is inserted into the record
-        if(mysqli_stmt_execute($stmt)) {  
+        //Adds input data from form to specified database
+        $sql = "INSERT INTO article (title, content, published_at)
+                VALUES(?, ?, ?)"; //Values for our prepared statement
 
-        $id = mysqli_insert_id($conn);        
-        echo "Inserted record with ID: $id";
+        $stmt = mysqli_prepare($conn, $sql); //Prepare the query
 
-        } else {
+        //Print error
+        if($stmt === false) {
+            echo mysqli_error($conn);
+        }     
+        else {
 
-            echo mysqli_stmt_errno($stmt);
+            mysqli_stmt_bind_param($stmt, "sss", $_POST['title'], $_POST['content'], $_POST['published_at']); //Add form data (expecting three strings "sss") to prepared statement
+            
+            //On successful execution the auto-generated ID is inserted into the record
+            if(mysqli_stmt_execute($stmt)) {  
+
+            $id = mysqli_insert_id($conn);        
+            echo "Inserted record with ID: $id";
+
+            } else {
+
+                echo mysqli_stmt_errno($stmt);
+            }
         }
     }
 }
@@ -36,6 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 require 'includes/header.php' ?>
 
 <h2>New article</h2>
+
+<?php if (!empty($errors)): ?>
+    <ul>
+        <?php foreach($errors as $error): ?>
+            <li><?= $error ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
 
 <form method="post">
 
