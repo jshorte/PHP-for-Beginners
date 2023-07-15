@@ -28,6 +28,8 @@ else {
 
 <?php require 'includes/header.php'; ?>
 
+<a href="new-article.php">Create new article</a>
+
         <?php if (empty($articles)): ?>
             <p>No articles found.</p>
         <?php else: ?>
