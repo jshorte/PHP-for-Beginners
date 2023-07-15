@@ -70,18 +70,20 @@ require 'includes/header.php' ?>
 
 <form method="post">
 
+<!-- Display values if previously submitted -->
+<!-- "htmlspecialchars" convert special chars to html to avoid XSS injection -->
     <div>
         <label for="title">Title</label>
-        <input name="title" id="title" placeholder="Article title" value="<?= $title; ?>"> <!-- Display title if previously submitted -->
+        <input name="title" id="title" placeholder="Article title" value="<?= htmlspecialchars($title); ?>"> 
     </div>
 
     <div>
-        <textarea name="content" id="content" rows="4" cols="40" placeholder="Article Content"><?= $content; ?></textarea>
+        <textarea name="content" id="content" rows="4" cols="40" placeholder="Article Content"><?= htmlspecialchars($content); ?></textarea>
     </div>
 
     <div>
         <label for="published_at">Publication date and time</label>
-        <input type="datetime-local" name="published_at" id="published_at" value="<?= $published_at; ?>">
+        <input type="datetime-local" name="published_at" id="published_at" value="<?= htmlspecialchars($published_at); ?>">
     </div>
 
     <button>Add</button>

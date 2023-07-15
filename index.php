@@ -37,8 +37,8 @@ else {
                     <li>
                         <article>
                             <!-- Create a link from the articles title. This link uses the articles ID to go to the specific page-->
-                            <h2><a href="article.php?id=<?= $article['id']; ?>"><?= $article['title']; ?></a></h2>                            
-                            <p><?= $article['content']; ?></p>
+                            <h2><a href="article.php?id=<?= $article['id']; ?>"><?= htmlspecialchars($article['title']); ?></a></h2>                            
+                            <p><?= htmlspecialchars($article['content']); ?></p>
                         </article>
                     </li>
                 <?php endforeach; ?>
