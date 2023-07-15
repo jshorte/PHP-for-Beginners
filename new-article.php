@@ -39,6 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //No errors and query passed    
         else {
 
+            if ($published_at == '') {
+                $published_at = null;
+            }
+
             mysqli_stmt_bind_param($stmt, "sss", $title, $content, $published_at); //Add form data (expecting three strings "sss") to prepared statement
             
             //On successful execution the auto-generated ID is inserted into the record
