@@ -3,16 +3,25 @@
 require 'includes/database.php'; //Contains getDB()
 
 $errors = [];
+$title = '';
+$content = '';
+$published_at = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {       
 
-    if($_POST['title'] == '') {
+    $title = $_POST['title']; //Check if title has been submitted
+    $content = $_POST['content'];
+    $published_at = $_POST['published_at'];
+
+    //Display error if values not supplied
+    if($title == '') {
         $errors[] = 'Title is required';
     }
-    if($_POST['content'] == '') {
+    if($content == '') {
         $errors[] = 'Content is required';
     }    
 
+    //If there are no errors proceed with table insertion
     if(empty($errors)) {
 
         $conn = getDB();
@@ -23,13 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt = mysqli_prepare($conn, $sql); //Prepare the query
 
-        //Print error
+        //Print error if query failed
         if($stmt === false) {
             echo mysqli_error($conn);
-        }     
+        } 
+        //No errors and query passed    
         else {
 
-            mysqli_stmt_bind_param($stmt, "sss", $_POST['title'], $_POST['content'], $_POST['published_at']); //Add form data (expecting three strings "sss") to prepared statement
+            mysqli_stmt_bind_param($stmt, "sss", $title, $content, $published_at); //Add form data (expecting three strings "sss") to prepared statement
             
             //On successful execution the auto-generated ID is inserted into the record
             if(mysqli_stmt_execute($stmt)) {  
@@ -62,16 +72,16 @@ require 'includes/header.php' ?>
 
     <div>
         <label for="title">Title</label>
-        <input name="title" id="title" placeholder="Article title">
+        <input name="title" id="title" placeholder="Article title" value="<?= $title; ?>"> <!-- Display title if previously submitted -->
     </div>
 
     <div>
-        <textarea name="content" id="content" rows="4" cols="40" placeholder="Article Content"></textarea>
+        <textarea name="content" id="content" rows="4" cols="40" placeholder="Article Content"><?= $content; ?></textarea>
     </div>
 
     <div>
         <label for="published_at">Publication date and time</label>
-        <input type="datetime-local" name="published_at" id="published_at">
+        <input type="datetime-local" name="published_at" id="published_at" value="<?= $published_at; ?>">
     </div>
 
     <button>Add</button>
