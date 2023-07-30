@@ -1,8 +1,8 @@
 <?php
 
 require 'includes/database.php'; //Contains getDB()
+require 'includes/article.php'; 
 
-$errors = [];
 $title = '';
 $content = '';
 $published_at = '';
@@ -13,36 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $published_at = $_POST['published_at'];
 
-    //Display error if values not supplied
-    if($title == '') 
-    {
-        $errors[] = 'Title is required';
-    }
-
-    if($content == '') 
-    {
-        $errors[] = 'Content is required';
-    }   
-
-    if($published_at !='') 
-    {
-        $date_time = date_create_from_format('Y-M-D H:I:S', $published_at); //Check input against date time format
-
-        //If the format doesn't match raise an error
-        if ($date_time === false) {
-            $errors[] = 'Invalid date and time';            
-        }        
-        else 
-        {
-            $date_errors = date_get_last_errors();
-
-            //If the format matches but a warning is raised with the entry (EG: 31sth of Februrary - Invalid date but in the correct format) then raise an error
-            if ($date_errors['warning_count'] > 0)
-            {
-                $errors[] = 'Invalid date and time'; 
-            }
-        }
-    }     
+    $errors = validateArticle($title, $content, $published_at);
 
     //If there are no errors proceed with table insertion
     if(empty($errors)) {
