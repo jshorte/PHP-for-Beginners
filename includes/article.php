@@ -45,7 +45,7 @@ function getArticle($conn, $id)
  */
 function validateArticle($title, $content, $published_at)
 {
-    $errors[] = ''; //Instantiate
+    $errors = []; //Instantiate
 
     //Display error if values not supplied
     if($title == '') 
