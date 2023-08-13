@@ -28,5 +28,7 @@ else { //Null if not a number
             </article>        
 
         <?php endif; ?>
+        
+        <a href="edit-article.php?id=<?= $article['id']; ?>">Edit</a> <!-- Link to edit-article page -->
 
 <?php require 'includes/footer.php'; ?>
