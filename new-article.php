@@ -2,6 +2,7 @@
 
 require 'includes/database.php'; //Contains getDB()
 require 'includes/article.php'; 
+require 'includes/url.php';
 
 $title = '';
 $content = '';
@@ -44,14 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $id = mysqli_insert_id($conn);   
 
-                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-                    $protocol = 'https';
-                } else {
-                    $protocol = 'http';
-                }
-
-                header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/article.php?id=$id");
-                exit;
+                redirect("/article.php?id=$id");
 
             } else {
 
