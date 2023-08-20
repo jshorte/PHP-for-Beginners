@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             //Allow published_at to be empty if specified
             if ($published_at == '') {
-                $published_at = null;
+                $published_at = null;                       
             }
 
             mysqli_stmt_bind_param($stmt, "sssi", $title, $content, $published_at, $id); //Add form data (three strings "sss" and int "i") to prepared statement
