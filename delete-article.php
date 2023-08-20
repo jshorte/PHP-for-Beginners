@@ -25,27 +25,30 @@ else {
     $die("ID not supplied, article not found");
 }
 
-//Adds input data from form to specified database
-$sql = "DELETE FROM article             
-        WHERE id = ?";
+if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 
-$stmt = mysqli_prepare($conn, $sql); //Prepare the query
+    //Adds input data from form to specified database
+    $sql = "DELETE FROM article             
+            WHERE id = ?";
 
-//Print error if query failed
-if($stmt === false) {
-    echo mysqli_error($conn);
-} 
-//No errors and query passed    
-else {      
+    $stmt = mysqli_prepare($conn, $sql); //Prepare the query
 
-    mysqli_stmt_bind_param($stmt, "i", $id); //Add form data (three strings "sss" and int "i") to prepared statement
-    
-    //On successful execution the auto-generated ID is inserted into the record
-    if(mysqli_stmt_execute($stmt)) {               
+    //Print error if query failed
+    if($stmt === false) {
+        echo mysqli_error($conn);
+    } 
+    //No errors and query passed    
+    else {      
 
-    redirect("/index.php");    
+        mysqli_stmt_bind_param($stmt, "i", $id); //Add form data (three strings "sss" and int "i") to prepared statement
+        
+        //On successful execution the auto-generated ID is inserted into the record
+        if(mysqli_stmt_execute($stmt)) {               
 
-    } else {
-        echo mysqli_stmt_errno($stmt);
+        redirect("/index.php");    
+
+        } else {
+            echo mysqli_stmt_errno($stmt);
+        }
     }
 }

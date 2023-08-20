@@ -29,7 +29,8 @@ else { //Null if not a number
 
         <?php endif; ?>
         
-        <a href="edit-article.php?id=<?= $article['id']; ?>">Edit</a> <!-- Link to edit-article page -->
-        <a href="delete-article.php?id=<?= $article['id']; ?>">Delete</a> <!-- Link to edit-article page -->        
+        <a href="edit-article.php?id=<?= $article['id']; ?>">Edit</a> <!-- Link to edit-article page -->        
+        <form method="post" action="delete-article.php?id=<?= $article['id']; ?>"> 
+        </form>
 
 <?php require 'includes/footer.php'; ?>
